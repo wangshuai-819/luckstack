@@ -17,10 +17,8 @@ namespace LuckStack
             Console.WriteLine(xx.Name + ",");
             Problem help = new Problem("主题")
             {
-                Reward=25
-            }
-                ;
-
+                Reward = 25
+            };
             Console.WriteLine(help.Body  + "," + help.Reward);
             #endregion
         }

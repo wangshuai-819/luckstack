@@ -49,7 +49,17 @@ namespace Entity
         }
         public DateTime Publish()
         {
+            Console.WriteLine("保存到数据库");
             return _publishDateTime;
         }
+        public void Load(int Id)
+        {
+            Console.WriteLine("获取一条求助");
+        }
+        public void Delete(int Id)
+        {
+            Console.WriteLine("删除某条求助");
+        }
+      
     }
 }
