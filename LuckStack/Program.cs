@@ -21,6 +21,12 @@ namespace LuckStack
             };
             Console.WriteLine(help.Body  + "," + help.Reward);
             #endregion
+
+            //Content content = new Content("kind");
+            //Console.WriteLine(content.kind);
+            //Article article = new Article();
+            //Console.WriteLine(article.kind);
+
         }
     }
 }

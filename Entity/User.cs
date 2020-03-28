@@ -1,9 +1,10 @@
 ﻿using System;
+using HomeWork;
 
 namespace Entity
 {
-    public class User
-    {
+    public sealed class User
+    {  
         public User(string name,int password)
         {
             _name = name;
@@ -36,6 +37,7 @@ namespace Entity
 
         private int _verificationCode;
         public int VerificationCode { get; set; }
+        public TokenManager Tokens { get; set; }
 
         public void Register()
         {

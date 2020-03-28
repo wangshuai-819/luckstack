@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Entity
 {
-    public class Problem
+    public class Problem :Content
     {
-        public Problem(string body)
+        public Problem(string body) : base("problem")
 
         {
              _body = body;
@@ -47,10 +47,10 @@ namespace Entity
             get { return _keyword[index]; }
             set { _keyword[index] = value; }
         }
-        public DateTime Publish()
+        public void     Publish()
         {
             Console.WriteLine("保存到数据库");
-            return _publishDateTime;
+            
         }
         public void Load(int Id)
         {
