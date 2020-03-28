@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entity
 {
-    class HelpMoney
+    public class HelpMoney
     {
         private int _available;
         private int _frozen;
