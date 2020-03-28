@@ -12,7 +12,7 @@ namespace Entity
              _body = body;
         }
         //private string _author;
-        public string Author { get; set; }
+        public User Author { get; set; }
 
         //private string _title;
         public string Title { get; set; }
@@ -47,11 +47,7 @@ namespace Entity
             get { return _keyword[index]; }
             set { _keyword[index] = value; }
         }
-        public void     Publish()
-        {
-            Console.WriteLine("保存到数据库");
-            
-        }
+        
         public void Load(int Id)
         {
             Console.WriteLine("获取一条求助");
@@ -60,6 +56,10 @@ namespace Entity
         {
             Console.WriteLine("删除某条求助");
         }
-      
+        public override void Publish()
+        {
+            base.Publish();
+            Author.helpMoney -= _reward;
+        }
     }
 }

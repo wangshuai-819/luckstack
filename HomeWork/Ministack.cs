@@ -4,27 +4,25 @@ using System.Text;
 
 namespace HomeWork
 {
-    class MimicStack
+    class Ministack
     {
-        public MimicStack(int length)
+        public Ministack(int length)
         {
-            container = new int[length];
+            container = new string[length];
         }
-        private int[] container;
+        private string[] container;
         public int top;
-        public int Pop(out bool empty)
+        public string pop()
         {
-            empty = top == 0;
-            if (empty)
+            if (top == 0 )
             {
-                Console.WriteLine("栈已空");
-                return -1;
+                return "栈已空";
             }
             top--;
             return container[top];
         }
 
-        public void Push(int value)
+        public void Push(string value)
         {
             if (top == container.Length)
             {
@@ -37,3 +35,5 @@ namespace HomeWork
         }
     }
 }
+ 
+ 

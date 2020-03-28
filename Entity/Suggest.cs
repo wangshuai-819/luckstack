@@ -10,5 +10,9 @@ namespace Entity
         {
 
         }
+        public override void Publish()
+        {
+            base.Publish();
+        }
     }
 }

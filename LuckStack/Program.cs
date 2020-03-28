@@ -1,6 +1,6 @@
 ﻿using System;
 using Entity;
- 
+
 
 namespace LuckStack
 {
@@ -19,14 +19,26 @@ namespace LuckStack
             {
                 Reward = 25
             };
-            Console.WriteLine(help.Body  + "," + help.Reward);
+            Console.WriteLine(help.Body + "," + help.Reward);
             #endregion
 
             //Content content = new Content("kind");
             //Console.WriteLine(content.kind);
             //Article article = new Article();
             //Console.WriteLine(article.kind);
+            //Suggest suggest = new Suggest();
+            //Console.WriteLine(suggest.kind);
 
+            //Content content2 = new Suggest();
+            //content2.Publish();
+
+            //Content content = new Article();
+            //content.Publish();
+
+            //Content content1 = new Problem("body");
+            //content1.Publish();
+
+           
         }
     }
 }

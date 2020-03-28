@@ -3,7 +3,7 @@ using HomeWork;
 
 namespace Entity
 {
-    public sealed class User
+    public sealed class User:Entity
     {  
         public User(string name,int password)
         {
@@ -38,7 +38,9 @@ namespace Entity
         private int _verificationCode;
         public int VerificationCode { get; set; }
         public TokenManager Tokens { get; set; }
-
+        public int helpMoney { get; set; }
+        public int HelpBean { get; set; }
+        public int HelpCredit { get; set; }
         public void Register()
         {
 
