@@ -41,7 +41,35 @@ namespace HomeWork
             #endregion
 
 
-            Console.WriteLine(new MimicStack(1));
+
+            #region struct 为值类型 举例说明
+            Adress zz;
+            zz.age = 25;
+            Console.WriteLine(zz.age);
+            //MyClass vv;
+            //vv.wi = 25;
+            //Console.WriteLine(vv.wi);
+            #endregion
+
+            #region 构造一个能装任何数据的数组，并完成数据的读写
+            Object[] array = new Object[] { 25,"25" ,true,2.1};
+            Console.WriteLine(array[0]+","+array[1] + "," + array[2] + "," + array[3]);
+            #endregion
+
         }
+        public int GetCount(string container, string target)
+        {
+          //int a=  container.Substring( a,b );
+            return -1;
+        }
+
+    }
+    struct Adress
+    {
+        public int age;
+    }
+    class MyClass
+    {
+        public int wi;
     }
 }

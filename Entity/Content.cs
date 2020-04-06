@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entity
 {
-    public class Content:Entity
+    public class Content 
     {
         public Content()
         {
@@ -20,6 +20,7 @@ namespace Entity
         { 
             get { return _creatTime; }
         }
+        [HelpMoneyChanged(25,Message =" 发布")]
         public  virtual void Publish()
         {
 
@@ -55,4 +56,5 @@ namespace Entity
     {
         public void Send();
     }
+
 }

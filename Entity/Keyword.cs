@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Entity
 {
-    public class Entity<T>
+   public  class Keyword
     {
-        public T Id { get; }
+        public IList<Article> Articles { get; set; }
     }
 }

@@ -6,27 +6,30 @@ namespace HomeWork
 {
     public class TokenManager
     {
-        private int _token;
-        public int  Add(int a,int b)
+        private int _tokens;
+        public int  Add(int token)
         {
-            return a | b;
+            _tokens= _tokens | token;
+            return _tokens;
         }
-        public int  Remove(int a,int b)
+        public int  Remove(int token)
         {
-            return a ^ b;
+            _tokens = _tokens ^ token;
+            return _tokens;
         }
-        public int  Has(int a,int b)
+        public int  Has(int token)
         {
-            return a&b;
+            _tokens = _tokens & token;
+            return _tokens;
         }
 
     }
     public enum Token
     {
-        SuperAdmin,
-        Admin,
-        Blogger,
-        Newbie,
-        Registered,
+        SuperAdmin=1,
+        Admin=2,
+        Blogger=4,
+        Newbie=8,
+        Registered=16,
     }
 }

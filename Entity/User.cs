@@ -3,9 +3,9 @@ using HomeWork;
 
 namespace Entity
 {
-    public sealed class User:Entity
-    {  
-        public User(string name,int password)
+    public sealed class User  
+    {
+        public User(string name, string password)
         {
             _name = name;
             _password = password;
@@ -15,10 +15,20 @@ namespace Entity
 
         private string _name;
 
+        private string[] Blackist = new string[] { "admin", "17bang", "管理员" };
+
         public string Name
         {
             get
             {
+                for (int i = 0; i < Blackist.Length; i++)
+                {
+                    if (_name.Contains(Blackist[i]))
+                    {
+                        Console.WriteLine("用户（User）的昵称（Name）不能含有admin、17bang、管理员等敏感词");
+                        break;
+                    }
+                }
                 return _name;
             }
             set
@@ -30,9 +40,29 @@ namespace Entity
                 _name = value;
             }
         }
+        private string WhiteList= "0123456789~!@#$%^&*()_+ABCDEFGabcdefg";
 
-        private int _password;
-        public int Password { private get; set; }
+        private string  _password;
+        public string Password
+        { 
+            private get
+            { return _password; }
+            set
+            {
+                if (value.Length<6)
+                {
+                    Console.WriteLine("密码长度不低于6");
+                }
+                for (int i = 0; i < value.Length; i++)
+                {
+                    if (!WhiteList.Contains(value[i]))
+                    {
+                        Console.WriteLine("密码必须由大小写英语单词、数字和特殊符号（~!@#$%^&*()_+）组成");
+                    }//else nothing
+                }
+                _password = value;
+            }
+        }
 
 
         private int _verificationCode;
