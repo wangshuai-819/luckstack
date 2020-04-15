@@ -6,18 +6,18 @@ namespace HomeWork
 {
     public class TokenManager
     {
-        private int _tokens;
-        public int  Add(int token)
+        public Token _tokens;
+        public Token Add(Token token)
         {
             _tokens= _tokens | token;
             return _tokens;
         }
-        public int  Remove(int token)
+        public Token Remove(Token token)
         {
             _tokens = _tokens ^ token;
             return _tokens;
         }
-        public int  Has(int token)
+        public Token Has(Token token)
         {
             _tokens = _tokens & token;
             return _tokens;

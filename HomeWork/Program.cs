@@ -56,6 +56,10 @@ namespace HomeWork
             Console.WriteLine(array[0]+","+array[1] + "," + array[2] + "," + array[3]);
             #endregion
 
+            TokenManager xxx = new TokenManager();
+            //xxx.Add(Token.Admin);
+            xxx.Add(Token.Blogger);
+            Console.WriteLine((xxx._tokens& Token.Blogger)== Token.Blogger);
         }
         public int GetCount(string container, string target)
         {

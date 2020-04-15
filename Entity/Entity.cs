@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Entity
 {
-    public class Entity<T>
+    public class Entity
     {
-        public T Id { get; }
+        public int Id { get; }
     }
 }

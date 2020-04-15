@@ -5,10 +5,10 @@ namespace Entity
 {
     public sealed class User  
     {
-        public User(string name, string password)
+        public User(string name,string password )
         {
-            _name = name;
-            _password = password;
+            Name = name;
+            Password = password;
         }
         public string InvitedBy { get; set; }
         public int InvitationCode { get; set; }
@@ -42,7 +42,7 @@ namespace Entity
         }
         private string WhiteList= "0123456789~!@#$%^&*()_+ABCDEFGabcdefg";
 
-        private string  _password;
+        private string _password;
         public string Password
         { 
             private get

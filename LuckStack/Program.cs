@@ -10,7 +10,7 @@ namespace LuckStack
         {
             #region 封装的练习
             Console.WriteLine("Hello World!");
-            User xx = new User("轩轩", "25")
+            User xx = new User("轩轩","25")
             {
                 Name = "admin",
             };
