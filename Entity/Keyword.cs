@@ -6,6 +6,7 @@ namespace Entity
 {
    public  class Keyword
     {
-        public IList<Article> Articles { get; set; }
+        public string Word { get; set; }
+        public List<Article> Articles { get; set; }
     }
 }

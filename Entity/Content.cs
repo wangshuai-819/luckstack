@@ -6,20 +6,19 @@ namespace Entity
 {
     public class Content 
     {
-        public Content()
+        public Content( )
         {
-            _creatTime = DateTime.Now;
+           CreatTime = new DateTime() ;
+           PublishTime = new DateTime() ;
         }
         public Content(string kind):this()
         {
             this.kind = kind;
         }
        /* public*/ protected internal string kind { get; set; }
-        private DateTime _creatTime;
-        public DateTime PublishTime
-        { 
-            get { return _creatTime; }
-        }
+       public DateTime CreatTime { get; }
+        public DateTime PublishTime {  get; }
+         
         [HelpMoneyChanged(25,Message =" 发布")]
         public  virtual void Publish()
         {

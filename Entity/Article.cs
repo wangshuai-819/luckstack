@@ -10,9 +10,9 @@ namespace Entity
         {
 
         }
-        public IList<Comment> Comments { get; set; }
+        public List<Comment> Comments { get; set; }
         public Appraise Appraise { get; set; }
-        public IList<Keyword> Keywords { get; set; }
+        public List<Keyword> Keywords { get; set; }
         public User Author { get; set; }
         public string Title
         {
