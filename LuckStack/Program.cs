@@ -8,8 +8,26 @@ namespace LuckStack
 {
     class Program
     {
+        public class Person
+        {
+
+        }
+        public delegate int ProviderWater(Person person);
+        public static int Water(Person person)
+        {
+            return 25;
+        }
+        public int GetWater(ProviderWater providerWater)
+        {
+            return providerWater(new Person());
+        }
         static void Main(string[] args)
         {
+            ProviderWater providerWater = delegate (Person person)
+            {
+                return 25;
+            };
+            Func<Person, int> func = person => 25;
             #region 练习
             User fg = new User("飞哥", "123456");
             User fish = new User("小余", "234567");
