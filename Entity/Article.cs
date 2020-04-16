@@ -14,17 +14,19 @@ namespace Entity
         public Appraise Appraise { get; set; }
         public List<Keyword> Keywords { get; set; }
         public User Author { get; set; }
+        private string _title;
         public string Title
         {
-            get => Title;
+            get => _title;
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrWhiteSpace(value) )
                 {
                     Console.WriteLine("标题不能为null值，也不能为一个或多个空字符组成的字符串");
+                    return;
                 }
                 value = value.Trim();
-                Title = value;
+                _title = value;
             }
         }
         //public string[] Keywords { get; set; }

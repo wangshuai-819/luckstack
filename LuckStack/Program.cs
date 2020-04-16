@@ -10,13 +10,14 @@ namespace LuckStack
     {
         static void Main(string[] args)
         {
+            #region 练习
             User fg = new User("飞哥", "123456");
             User fish = new User("小余", "234567");
             User self = new User("自己", "345678");
-            User wait = new User("等待", "45678");
+            User wait = new User("等待", "456789");
             IEnumerable<User> users = new List<User> { fg, fish, self, wait };
 
-            Keyword csharp = new Keyword { Word = "C#"    };
+            Keyword csharp = new Keyword { Word = "C#" };
             Keyword java = new Keyword { Word = "java" };
             Keyword SQL = new Keyword { Word = "sql " };
             Keyword UI = new Keyword { Word = "UI" };
@@ -46,7 +47,7 @@ namespace LuckStack
             Article Python = new Article
             {
                 Comments = new List<Comment> { excellent, good, common },
-                Keywords = new List<Keyword> {     SQL  },
+                Keywords = new List<Keyword> { SQL },
                 Author = fg,
                 Title = "python"
             };
@@ -57,10 +58,10 @@ namespace LuckStack
                 Author = fish,
                 Title = "linux"
             };
-            IEnumerable<Article> articles = new List<Article> { HTML, Linux, JavaScript,Python };
+            IEnumerable<Article> articles = new List<Article> { HTML, Linux, JavaScript, Python };
 
             csharp.Articles = new List<Article> { HTML, JavaScript };
-            excellent.Article =  HTML;
+            excellent.Article = HTML;
 
             var articlebyfg = from a in articles
                               where a.Author.Name == "飞哥"
@@ -81,8 +82,8 @@ namespace LuckStack
                               group a by a.Author into aa
                               select new
                               {
-                                  authorname=aa.Key,
-                                  count=aa.Count(),
+                                  authorname = aa.Key,
+                                  count = aa.Count(),
                               };
             var authorcountl = articles.GroupBy(a => a.Author)
                 .Select(aa => new { author = aa.Key, count = aa.Count() }
@@ -91,9 +92,26 @@ namespace LuckStack
             var keywordcon = from a in articles
                              where a.Keywords.Contains(csharp) || a.Keywords.Contains(NET)
                              select a;
+            //var keywaordjion=from a in articles
+            //                 join k in keywords
+            //                 on  a.Keywords
+            //                 where 
+            var keywordconl = articles.Select(a => a.Keywords.Contains(csharp));
 
-           
-                            
+            var commentmax = from a in articles
+                             where a.Comments.Count > a.Comments.Count
+                             select a;
+            var commentmaxl = articles.OrderBy(a => a.Comments.Count()).First();
+            var authorcomment = from a in articles
+                                group a by a.Author into aa
+                                select new
+                                {
+                                    authorname = aa.Key.Name,
+                                    maxcomment = aa.OrderBy(aa => aa.Comments.Count()).First(),
+                                };
+                              
+            #endregion
+
 
 
             #region creattime  反射
@@ -112,12 +130,12 @@ namespace LuckStack
         }
         static void IsHelpMoneyChanged(Object obj)
         {
-            if (HelpMoneyChangedAttribute.IsDefined(typeof(Object).GetMethod("Publish"), typeof(HelpMoneyChangedAttribute), false))
-            {
-                //HelpMoneyChangedAttribute.GetCustomAttribute(  );
-                //HelpMoneyChangedAttribute change = attributeonatricle as HelpMoneyChangedAttribute;
-                //Console.WriteLine(change.Message);
-            }
+            //if (HelpMoneyChangedAttribute.IsDefined(typeof(Object).GetMethod("Publish"), typeof(HelpMoneyChangedAttribute), false))
+            //{
+            //    //HelpMoneyChangedAttribute.GetCustomAttribute(  );
+            //    //HelpMoneyChangedAttribute change = attributeonatricle as HelpMoneyChangedAttribute;
+            //    //Console.WriteLine(change.Message);
+            //}
 
         }
         static void ChangecreatTime(Content content, DateTime dateTime)
