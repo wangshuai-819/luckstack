@@ -1,0 +1,24 @@
+﻿@page
+@model _17bangqianduan.Pages.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    string line = "i";
+    for (int j = 0; j < 5; j++)
+    {
+        if (j % 2 == 0)
+        {
+            <p style="color:blue">@line</p>
+        }
+        else  
+        {
+            <p style="color:red">@line</p>
+        }
+         
+        <br />
+        line = line + " i i ";
+    }
+}
+<h1>Index</h1>
+

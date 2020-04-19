@@ -53,28 +53,34 @@ namespace LuckStack
                 Comments = new List<Comment> { excellent, good, common },
                 Keywords = new List<Keyword> { csharp, java, SQL, NET },
                 Author = fg,
-                Title = "html"
+                Title = "html",
+                PublishTime=new DateTime(2020,1,1)
             };
             Article JavaScript = new Article
             {
                 Comments = new List<Comment> { excellent, good, common, bad },
                 Keywords = new List<Keyword> { csharp, java, SQL },
                 Author = fg,
-                Title = "javascript"
+                Title = "javascript",
+                PublishTime = new DateTime(2020, 3, 20)
+
             };
             Article Python = new Article
             {
                 Comments = new List<Comment> { excellent, good, common },
                 Keywords = new List<Keyword> { SQL },
                 Author = fg,
-                Title = "python"
+                Title = "python",
+                PublishTime = new DateTime(2020, 2, 18)
+
             };
             Article Linux = new Article
             {
                 Comments = new List<Comment> { good, common },
                 Keywords = new List<Keyword> { csharp, SQL },
                 Author = fish,
-                Title = "linux"
+                Title = "linux",
+                PublishTime = new DateTime(2020, 4, 1)
             };
             IEnumerable<Article> articles = new List<Article> { HTML, Linux, JavaScript, Python };
 
@@ -92,9 +98,9 @@ namespace LuckStack
             var articlebyfishl = articles.Where(a => a.Author.Name == " 小鱼").Where(t => t.CreatTime > new DateTime(2019, 1, 1));
 
             var articledes = from a in articles
-                             orderby a.CreatTime
+                             orderby a.PublishTime
                              select a;
-            var articledesl = articles.OrderByDescending(a => a.CreatTime);
+            var articledesl = articles.OrderByDescending(a => a.PublishTime);
 
             var authorcount = from a in articles
                               group a by a.Author into aa
@@ -127,6 +133,17 @@ namespace LuckStack
                                     authorname = aa.Key.Name,
                                     maxcomment = aa.OrderBy(aa => aa.Comments.Count()).First(),
                                 };
+            var publishtimeari = from a in articles
+                                 orderby a.PublishTime
+                                 group a by a.Author into ap
+                                 select new
+                                 {
+                                     authorname = ap.Key.Name,
+                                     rencentariticle = ap.OrderBy(aa => aa.PublishTime).Last()
+                                 };
+            
+                                 
+
                               
             #endregion
 

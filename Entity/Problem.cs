@@ -31,8 +31,7 @@ namespace Entity
             {
                 if (value < 0)
                 {
-                    Console.WriteLine("Reward不能为负数");
-                    return;
+                    throw new ArgumentOutOfRangeException("Reward不能为负数");
                 }//else
                 _reward = value;
 
@@ -40,7 +39,7 @@ namespace Entity
 
         }
 
-        private DateTime _publishDateTime;
+        public  DateTime PublishDateTime { get; set; }
         private string[] _keyword = new string[10];
         public string this[int index]
         {

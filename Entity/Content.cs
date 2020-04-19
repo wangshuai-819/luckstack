@@ -8,21 +8,25 @@ namespace Entity
     {
         public Content( )
         {
-           CreatTime = new DateTime() ;
-           PublishTime = new DateTime() ;
+           CreatTime = DateTime.Now ;
+            PublishTime = DateTime.Now;
         }
         public Content(string kind):this()
         {
             this.kind = kind;
         }
        /* public*/ protected internal string kind { get; set; }
-       public DateTime CreatTime { get; }
+        public User Author { get; set; }
+        public DateTime CreatTime { get; }
         public DateTime PublishTime {  get; }
          
         [HelpMoneyChanged(25,Message =" 发布")]
         public  virtual void Publish()
         {
-
+            if (Author==null)
+            {
+                throw new NullReferenceException("Author不能为空");
+            }
         }
     }
     public class EmailMessage : ISendMessage, IChat

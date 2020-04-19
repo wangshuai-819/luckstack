@@ -25,8 +25,7 @@ namespace Entity
                 {
                     if (_name.Contains(Blackist[i]))
                     {
-                        Console.WriteLine("用户（User）的昵称（Name）不能含有admin、17bang、管理员等敏感词");
-                        break;
+                        throw new ArgumentOutOfRangeException("用户（User）的昵称（Name）不能含有admin、17bang、管理员等敏感词");
                     }
                 }
                 return _name;

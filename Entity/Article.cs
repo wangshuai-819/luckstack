@@ -13,6 +13,7 @@ namespace Entity
         public List<Comment> Comments { get; set; }
         public Appraise Appraise { get; set; }
         public List<Keyword> Keywords { get; set; }
+        public DateTime PublishTime { get; set; }
         public User Author { get; set; }
         private string _title;
         public string Title
@@ -22,8 +23,7 @@ namespace Entity
             {
                 if (string.IsNullOrWhiteSpace(value) )
                 {
-                    Console.WriteLine("标题不能为null值，也不能为一个或多个空字符组成的字符串");
-                    return;
+                    throw new ArgumentNullException("为null值，也不能为一个或多个空字符组成的字符串");
                 }
                 value = value.Trim();
                 _title = value;
