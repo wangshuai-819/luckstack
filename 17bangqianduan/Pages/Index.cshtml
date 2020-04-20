@@ -3,22 +3,112 @@
 @{
     ViewData["Title"] = "Index";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <title>一起帮</title>
+</head>
+<body>
+    <header>
+        <a href="http://17bang.ren" target="_blank">
+            <img src="~/image/一起帮logo.jpg" alt="一起帮logo" title="一起帮" />
+        </a>
+        <span>
+            一起帮 · 网络互助平台
+        </span>
+    </header>
+    <article>  一起帮 · 网络互助平台</article>
+    <p>  </p>
+    <strong></strong>
+    <ol>
+        <li>星期一</li>
+        <li>星期二</li>
+        <li>星期三</li>
+        <li>星期四</li>
+        <li>星期五</li>
+        <ul>
+            <li>星期六</li>
+            <li>星期天</li>
+        </ul>
+    </ol>
+    <table border="1">
+         <thead >
+             <tr>
+                 <th>1 </th>
+                 <th> 4</th>
+             </tr>
+         </thead>
+        <tbody  >
+            <tr>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr >
+                <td >3</td>
+                <td >4</td>
+            </tr>
+        </tbody>
+    </table>
+    <aside>  一起帮 · 网络互助平台   </aside>
+    <footer>   一起帮 · 网络互助平台 </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @{
     string line = "i";
     for (int j = 0; j < 5; j++)
     {
         if (j % 2 == 0)
         {
-            <p style="color:blue">@line</p>
+            <div style="color:blue">@line</div>
         }
-        else  
+        else
         {
-            <p style="color:red">@line</p>
+            <div style="color:red">@line</div>
         }
-         
-        <br />
         line = line + " i i ";
     }
 }
 <h1>Index</h1>
+@{
+    DateTime time = DateTime.Now;
+}
+@*<body>
+        <div> @time</div>
+    </body>*@
 
+<div> @time</div>
