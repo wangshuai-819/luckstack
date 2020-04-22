@@ -10,13 +10,54 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
+
+
+<div>
+    不显示:
+    @if (!string.IsNullOrEmpty(Request.Query["exclude"]))
+    {
+        ProblemStatus status = Enum.Parse<ProblemStatus>(Request.Query["exclude"]);
+        if (status == ProblemStatus.Cancelled)
+        {
+            <span>已撤销</span>
+        }
+        else
+        {
+            <a href="?exclude=@ProblemStatus.Cancelled">已撤销</a>;
+        }
+        if (status == ProblemStatus.InProcess)
+        {
+            <span>协助中</span>
+        }
+        else
+        {
+            <a href="?exclude=@ProblemStatus.InProcess">协助中</a>;
+        }
+        @if (status == ProblemStatus.Rewarded)
+        {
+            <span>已酬谢</span>
+        }
+        else
+        {
+            <a href="?exclude=@ProblemStatus.Rewarded">已酬谢</a>;
+        }
+    }
+    else
+    {
+        <div>
+            <a href="?exclude=@ProblemStatus.Cancelled">已撤销</a>|
+            <a href ="?exclude=@ProblemStatus.InProcess" > 协助中 </a>|
+            <a href="?exclude=@ProblemStatus.Rewarded">已酬谢</a>
+        </div>
+    }
+</div>
 @foreach (var item in Model.ProblemLists)
 {
     <small>@item.PublishTime.ToString("yyyy年mm月dd日   hh时mm分")</small>
     <a href="/User/@item.Author.Id">@item.Author.Name</a>
     <br />
     <h3><span>@item.Status.GetDescription()</span><a href="/Problem/@item.Id"> @item.Title</a> </h3>
- 
+
     <p>@item.Abstract</p>
 
 }

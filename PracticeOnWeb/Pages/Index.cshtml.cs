@@ -29,7 +29,15 @@ namespace PracticeOnWeb.Pages
         
         public void OnGet()  //html只会取onget 方法中的属性值   即要求model声明属性  
         {
-            ProblemLists = _problemRepository.Get();
+            string exclude = Request.Query["exclude"];
+            if (string.IsNullOrEmpty(exclude))
+            {
+                ProblemLists = _problemRepository.Get();
+            }
+            else
+            {
+                ProblemLists = _problemRepository.GetExclude(Enum.Parse<ProblemStatus>(exclude));
+            }
 
         }
         public void OnPost()
@@ -37,6 +45,7 @@ namespace PracticeOnWeb.Pages
 
         }
     }
+   
     public class ProblemRepository
     {
         private static IList<Problem> _problems;
@@ -62,11 +71,32 @@ namespace PracticeOnWeb.Pages
                     Abstract = " 项目里的控件绑定属性都会出现这个问题…… ",
                     Status=ProblemStatus.Rewarded,
                 },
+                       new Problem
+                {
+                    PublishTime = DateTime.Now,
+                    Author = new User { Name = "   别闹", Id = 333 },
+                    Title = " SQL Server多表查询,中间表有字段可能为空",
+                    Id = 3,
+                    Abstract = " 如图,表B中的D,E,F可能会是空,SQL怎么写,才能保证数据的一致性…… ",
+                    Status=ProblemStatus.InProcess,
+                },  new Problem
+                {
+                    PublishTime = DateTime.Now,
+                    Author = new User { Name = "  ghwolf", Id = 444 },
+                    Title = "  西安大专应届生找个JAVA开发的工作，有没有推荐的",
+                    Id = 4,
+                    Abstract = " 本人3个月后毕业，自学3年JAVA，对J2EE的一整套开发体系非常熟悉，OA类的项目做的比较多。荣获第八届蓝桥杯JAVA C组个人赛全国一等奖，之后去上海实习几个月，因为一些原因必须回西安发展，但是投简历无数，要么没有音信，要么第一轮面试结束没有消息，要么学历不过关--。智联上西安的JAVA校招几乎没有，1个月过去了，还是没有工作，我都不求工资，只求有长远发展，不会的我都愿意学，但是不想去那种混日子的公司，要有激情，有创新，有热血的公司。有没有推荐的，或者那位大神觉得我可以内推一下我，至少给个面试机会………… ",
+                    Status=ProblemStatus.Rewarded,
+                }
              };
         }
         public IList<Problem> Get()
         {
             return _problems;
+        }
+        public IList<Problem> GetExclude(ProblemStatus status)
+        {
+            return _problems.Where(p => p.Status != status).ToList();
         }
         public void Add(Problem problem)
         {
