@@ -1,0 +1,23 @@
+﻿@page
+@model _17bangqianduan.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+<header>注册</header>
+    <form method="post">
+        <label>邀请人：（* 必填，没有邀请人）</label>
+        <input type="text" name="UserName"   /><br />
+        <label> 邀请码：（* 必填）</label>
+        <input type="text" name="InvistedBy"   /><br />
+        <label>用户名：（* 必填）</label>
+        <input type="text" name="UserName"   /><br />
+        <label>密码：（* 必填）</label>
+        <input type="password" name="Password"   /><br />
+        <label> 验证密码：（* 必填）</label>
+        <input type="password" name="Password"   /><br />
+        <label> 验证码：（* 必填）</label>
+        <input type="text" name="VerificationCede" /><br />
+        <input type="submit" value="提交" />
+        <input type="reset" value="重置" />
+    </form>
+

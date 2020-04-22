@@ -1,0 +1,17 @@
+﻿@page
+@model _17bangqianduan.Pages.LogOnModel
+@{
+    ViewData["Title"] = "LogOn";
+}
+
+<header>登录</header>
+<form method="get">
+    <label>用户名：（* 必填）</label><br />
+    <input type="text" name="UserName" /><br />
+    <label>密码：（* 必填）</label><br />
+    <input type="password" name="Password" /><br />
+    <label> 验证码：（* 必填）</label>
+    <input type="text" name="VerificationCede" /><br />
+    <input type="submit" value="提交" />
+    <label><input type="checkbox" />记住我 </label>
+</form>
