@@ -1,6 +1,6 @@
 ﻿@page
 @using PracticeOnWeb.Pages
-@model  IndexModel
+@model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
@@ -10,12 +10,13 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-  @foreach (var item in  Model.ProblemLists)
-  {
-      <small>@item.PublishTime</small> 
-      <a>@item.Author.Name</a><br />
-      <h2>@item.Title</h2>
-      <p>@item.Abstract</p>
+@foreach (var item in Model.ProblemLists)
+{
+    <small>@item.PublishTime.ToString("yyyy年mm月dd日   hh时mm分")</small>
+    <a href="/User/@item.Author.Id">@item.Author.Name</a>
+    <br />
+    <span>@item.Status</span>
+    <a href="/Problem/@item.Id"> <h2>@item.Title</h2> </a>
+    <p>@item.Abstract</p>
 
-  }
-  
+}
