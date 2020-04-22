@@ -26,18 +26,23 @@ namespace PracticeOnWeb.Pages
         }
         private ProblemRepository _problemRepository;
         public IEnumerable<Problem> ProblemLists { get; set; }
-        
+        public int ProblemSum { get; set; }
+        public int PageSize = 2;
         public void OnGet()  //html只会取onget 方法中的属性值   即要求model声明属性  
         {
-            string exclude = Request.Query["exclude"];
-            if (string.IsNullOrEmpty(exclude))
-            {
-                ProblemLists = _problemRepository.Get();
-            }
-            else
-            {
-                ProblemLists = _problemRepository.GetExclude(Enum.Parse<ProblemStatus>(exclude));
-            }
+            int pageIndex = Convert.ToInt32(Request.Query["pageIndex"]);
+            PageSize = 2;
+            //string exclude = Request.Query["exclude"];
+            ProblemSum = _problemRepository.GetSum();
+            ProblemLists = _problemRepository.GetPaged(pageIndex, PageSize);
+            //if (string.IsNullOrEmpty(exclude))
+            //{
+            //    ProblemLists = _problemRepository.Get();
+            //}
+            //else
+            //{
+            //    ProblemLists = _problemRepository.GetExclude(Enum.Parse<ProblemStatus>(exclude));
+            //}
 
         }
         public void OnPost()
@@ -45,7 +50,7 @@ namespace PracticeOnWeb.Pages
 
         }
     }
-   
+
     public class ProblemRepository
     {
         private static IList<Problem> _problems;
@@ -94,9 +99,13 @@ namespace PracticeOnWeb.Pages
         {
             return _problems;
         }
-        public IList<Problem> GetExclude(ProblemStatus status)
+        //public IList<Problem> GetExclude(ProblemStatus status)
+        //{
+        //    return _problems.Where(p => p.Status != status).ToList();
+        //}
+        public IList<Problem> GetPaged(int pageIndex, int pageSize)
         {
-            return _problems.Where(p => p.Status != status).ToList();
+            return _problems.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
         }
         public void Add(Problem problem)
         {
@@ -105,6 +114,11 @@ namespace PracticeOnWeb.Pages
         public void Delete(Problem problem)
         {
             _problems.Remove(problem);
+        }
+
+        public int GetSum()
+        {
+            return _problems.Count();
         }
     }
     public enum ProblemStatus
@@ -136,10 +150,10 @@ namespace PracticeOnWeb.Pages
         public static string GetDescription<T>(this T value)
         {
             Type typeInfo = typeof(T);
-            FieldInfo field = typeInfo.GetField (value.ToString());
+            FieldInfo field = typeInfo.GetField(value.ToString());
             DescriptionAttribute attribute = (DescriptionAttribute)DescriptionAttribute.GetCustomAttribute(field, typeof(DescriptionAttribute));
             return attribute.Description;
         }
     }
-   
+
 }

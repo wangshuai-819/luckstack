@@ -46,7 +46,7 @@
     {
         <div>
             <a href="?exclude=@ProblemStatus.Cancelled">已撤销</a>|
-            <a href ="?exclude=@ProblemStatus.InProcess" > 协助中 </a>|
+            <a href="?exclude=@ProblemStatus.InProcess"> 协助中 </a>|
             <a href="?exclude=@ProblemStatus.Rewarded">已酬谢</a>
         </div>
     }
@@ -57,7 +57,25 @@
     <a href="/User/@item.Author.Id">@item.Author.Name</a>
     <br />
     <h3><span>@item.Status.GetDescription()</span><a href="/Problem/@item.Id"> @item.Title</a> </h3>
-
     <p>@item.Abstract</p>
-
+}
+@*<hr />
+    <footer>footer</footer>*@
+@{ int CurrentPageIndex = Convert.ToInt32(Request.Query["pageIndex"]);
+    int ProblemSum = Model.ProblemSum;
+    int PageSize = Model.PageSize;
+}
+@if (CurrentPageIndex > 1)
+{
+    <a href="/?pageIndex=@(CurrentPageIndex-1)">上一页</a>
+}
+@{
+    for (int i = 1; i < ProblemSum / PageSize; i++)
+    {
+        <a href="?pageIndex=@i">第@(i)页</a>
+    }
+}
+@if (CurrentPageIndex < ProblemSum / PageSize)
+{
+    <a href="/?pageIndex=@(CurrentPageIndex+1)">下一页</a>
 }
