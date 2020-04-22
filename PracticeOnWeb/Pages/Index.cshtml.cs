@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -24,6 +26,7 @@ namespace PracticeOnWeb.Pages
         }
         private ProblemRepository _problemRepository;
         public IEnumerable<Problem> ProblemLists { get; set; }
+        
         public void OnGet()  //html只会取onget 方法中的属性值   即要求model声明属性  
         {
             ProblemLists = _problemRepository.Get();
@@ -76,8 +79,11 @@ namespace PracticeOnWeb.Pages
     }
     public enum ProblemStatus
     {
+        [Description("已撤销")]
         Cancelled,
+        [Description("协助中")]
         InProcess,
+        [Description("已酬谢")]
         Rewarded,
     }
     public class Problem
@@ -94,4 +100,16 @@ namespace PracticeOnWeb.Pages
         public string Name { get; set; }
         public int Id { get; set; }
     }
+
+    public static class EnumDescription
+    {
+        public static string GetDescription<T>(this T value)
+        {
+            Type typeInfo = typeof(T);
+            FieldInfo field = typeInfo.GetField (value.ToString());
+            DescriptionAttribute attribute = (DescriptionAttribute)DescriptionAttribute.GetCustomAttribute(field, typeof(DescriptionAttribute));
+            return attribute.Description;
+        }
+    }
+   
 }

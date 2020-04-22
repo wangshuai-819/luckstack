@@ -15,8 +15,8 @@
     <small>@item.PublishTime.ToString("yyyy年mm月dd日   hh时mm分")</small>
     <a href="/User/@item.Author.Id">@item.Author.Name</a>
     <br />
-    <span>@item.Status</span>
-    <a href="/Problem/@item.Id"> <h2>@item.Title</h2> </a>
+    <h3><span>@item.Status.GetDescription()</span><a href="/Problem/@item.Id"> @item.Title</a> </h3>
+ 
     <p>@item.Abstract</p>
 
 }
