@@ -1,0 +1,82 @@
+﻿@page
+@model _17bangqianduan.Pages.Problem.IndexModel
+@using _17bangqianduan.Pages.Problem
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (string.IsNullOrEmpty(Request.Query["exclude"]))
+{
+    <div>
+        不显示：
+        <a href="/Problem?exclude=@ProblemStatus.Cancelled ">已撤销</a>|
+        <a href="/Problem?exclude=@ProblemStatus.InProcess ">协助中</a>|
+        <a href="/Problem?exclude=@ProblemStatus.WaitedProcess ">待协助</a>|
+        <a href="/Problem?exclude=@ProblemStatus.Rewarded ">已酬谢</a>
+    </div>
+}
+else
+{
+    ProblemStatus exclude = Enum.Parse<ProblemStatus>(Request.Query["exclude"]);
+    if (exclude == ProblemStatus.Cancelled)
+    {
+        <span>已撤销</span>
+    }
+    else
+    {
+        <a href="/Problem?exclude=@ProblemStatus.Cancelled ">已撤销</a>
+    }
+    if (exclude == ProblemStatus.InProcess)
+    {
+        <span>协助中</span>
+    }
+    else
+    {
+        <a href="Problem?exclude=@ProblemStatus.InProcess">协助中</a>
+    }
+    if (exclude == ProblemStatus.WaitedProcess)
+    {
+        <span>待协助</span>
+    }
+    else
+    {
+        <a href="/Problem?exclude=@ProblemStatus.WaitedProcess">待协助</a>
+    }
+    if (exclude == ProblemStatus.Rewarded)
+    {
+        <span>已酬谢</span>
+    }
+    else
+    {
+        <a href="/Problem?exclude=@ProblemStatus.Rewarded">已酬谢</a>
+    }
+}
+<br />
+@foreach (var problem in Model.ProblemModels)
+{
+    <small>@problem.PublishTime.ToString("yyyy年mm月dd日  hh时mm分")</small>
+    <a href="/Problem/@problem.Author.Id">@problem.Author.Name</a>
+    <h3>
+        <span>@problem.Status.GetEnumDescription()</span>
+        <a href="/Problem/@problem.Id">@problem.Title</a>
+    </h3>
+    <p>@problem.Abstract</p>
+    <footer></footer>
+    <hr />
+}
+@{
+    int CurrentPageIndex = Convert.ToInt32(Request.Query[Const.pageIndex])+1  ;
+    int SumOFproblem = Model.SumProblems;
+}
+@if (CurrentPageIndex > 2)
+{
+    <a href="/Problem?@Const.pageIndex=@(CurrentPageIndex-1)">上一页</a>
+}
+@for (int i = 1; i < SumOFproblem / Const.pageSize+1; i++)
+{
+    <a href="/Problem?@Const.pageIndex=@i">第@(i)页</a>
+}
+@if (CurrentPageIndex < SumOFproblem / Const.pageSize+1)
+{
+    <a href="/Problem?@Const.pageIndex=@(CurrentPageIndex+1)">下一页</a>
+}

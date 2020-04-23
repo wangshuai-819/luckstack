@@ -59,18 +59,18 @@
     <h3><span>@item.Status.GetDescription()</span><a href="/Problem/@item.Id"> @item.Title</a> </h3>
     <p>@item.Abstract</p>
 }
-@*<hr />
-    <footer>footer</footer>*@
-@{ int CurrentPageIndex = Convert.ToInt32(Request.Query["pageIndex"]);
+<hr />
+    <footer>footer</footer>
+@{ int CurrentPageIndex = Convert.ToInt32(Request.Query["pageIndex"])+1;
     int ProblemSum = Model.ProblemSum;
     int PageSize = Model.PageSize;
 }
-@if (CurrentPageIndex > 1)
+@if (CurrentPageIndex > 2)
 {
     <a href="/?pageIndex=@(CurrentPageIndex-1)">上一页</a>
 }
 @{
-    for (int i = 1; i < ProblemSum / PageSize; i++)
+    for (int i = 1; i < ProblemSum / PageSize+1; i++)
     {
         <a href="?pageIndex=@i">第@(i)页</a>
     }

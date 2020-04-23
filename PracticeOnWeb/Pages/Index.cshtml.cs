@@ -32,18 +32,17 @@ namespace PracticeOnWeb.Pages
         {
             int pageIndex = Convert.ToInt32(Request.Query["pageIndex"]);
             PageSize = 2;
-            //string exclude = Request.Query["exclude"];
+            string exclude = Request.Query["exclude"];
             ProblemSum = _problemRepository.GetSum();
+            if (string.IsNullOrEmpty(exclude))
+            {
+                ProblemLists = _problemRepository.Get();
+            }
+            else
+            {
+                ProblemLists = _problemRepository.GetExclude(Enum.Parse<ProblemStatus>(exclude));
+            }
             ProblemLists = _problemRepository.GetPaged(pageIndex, PageSize);
-            //if (string.IsNullOrEmpty(exclude))
-            //{
-            //    ProblemLists = _problemRepository.Get();
-            //}
-            //else
-            //{
-            //    ProblemLists = _problemRepository.GetExclude(Enum.Parse<ProblemStatus>(exclude));
-            //}
-
         }
         public void OnPost()
         {
@@ -67,7 +66,7 @@ namespace PracticeOnWeb.Pages
                     Abstract = "在服务器上把原先的asp网站整体迁移出来，在新的服务器上重新布置……",
                     Status=ProblemStatus.Cancelled
                 },
-                     new Problem
+                new Problem
                 {
                     PublishTime = DateTime.Now,
                     Author = new User { Name = "  txdyr", Id = 222 },
@@ -76,7 +75,7 @@ namespace PracticeOnWeb.Pages
                     Abstract = " 项目里的控件绑定属性都会出现这个问题…… ",
                     Status=ProblemStatus.Rewarded,
                 },
-                       new Problem
+                new Problem
                 {
                     PublishTime = DateTime.Now,
                     Author = new User { Name = "   别闹", Id = 333 },
@@ -84,7 +83,26 @@ namespace PracticeOnWeb.Pages
                     Id = 3,
                     Abstract = " 如图,表B中的D,E,F可能会是空,SQL怎么写,才能保证数据的一致性…… ",
                     Status=ProblemStatus.InProcess,
-                },  new Problem
+                },
+                 new Problem
+                {
+                    PublishTime = DateTime.Now,
+                    Author = new User { Name = "   别闹", Id = 333 },
+                    Title = " SQL Server多表查询,中间表有字段可能为空",
+                    Id = 3,
+                    Abstract = " 如图,表B中的D,E,F可能会是空,SQL怎么写,才能保证数据的一致性…… ",
+                    Status=ProblemStatus.InProcess,
+                },
+                  new Problem
+                {
+                    PublishTime = DateTime.Now,
+                    Author = new User { Name = "   别闹", Id = 333 },
+                    Title = " SQL Server多表查询,中间表有字段可能为空",
+                    Id = 3,
+                    Abstract = " 如图,表B中的D,E,F可能会是空,SQL怎么写,才能保证数据的一致性…… ",
+                    Status=ProblemStatus.InProcess,
+                },
+                new Problem
                 {
                     PublishTime = DateTime.Now,
                     Author = new User { Name = "  ghwolf", Id = 444 },
@@ -99,10 +117,10 @@ namespace PracticeOnWeb.Pages
         {
             return _problems;
         }
-        //public IList<Problem> GetExclude(ProblemStatus status)
-        //{
-        //    return _problems.Where(p => p.Status != status).ToList();
-        //}
+        public IList<Problem> GetExclude(ProblemStatus status)
+        {
+            return _problems.Where(p => p.Status != status).ToList();
+        }
         public IList<Problem> GetPaged(int pageIndex, int pageSize)
         {
             return _problems.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
