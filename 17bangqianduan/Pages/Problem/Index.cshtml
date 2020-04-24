@@ -1,4 +1,5 @@
 ﻿@page
+
 @model _17bangqianduan.Pages.Problem.IndexModel
 @using _17bangqianduan.Pages.Problem
 @{
@@ -65,18 +66,19 @@ else
     <hr />
 }
 @{
-    int CurrentPageIndex = Convert.ToInt32(Request.Query[Const.pageIndex])+1  ;
+    int CurrentPageIndex = string.IsNullOrEmpty(Request.Query[Const.pageIndex]) ? 1
+      : Convert.ToInt32(Request.Query[Const.pageIndex]);
     int SumOFproblem = Model.SumProblems;
 }
-@if (CurrentPageIndex > 2)
+@if (CurrentPageIndex > 1)
 {
     <a href="/Problem?@Const.pageIndex=@(CurrentPageIndex-1)">上一页</a>
 }
-@for (int i = 1; i < SumOFproblem / Const.pageSize+1; i++)
+@for (int i = 1; i < SumOFproblem / Const.pageSize + 2; i++)
 {
     <a href="/Problem?@Const.pageIndex=@i">第@(i)页</a>
 }
-@if (CurrentPageIndex < SumOFproblem / Const.pageSize+1)
+@if (CurrentPageIndex < SumOFproblem / Const.pageSize + 1)
 {
     <a href="/Problem?@Const.pageIndex=@(CurrentPageIndex+1)">下一页</a>
 }

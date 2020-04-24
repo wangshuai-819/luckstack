@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace _17bangqianduan.Pages.Article.Log
+namespace _17bangqianduan.Pages
 {
     public class OnModel : PageModel
     {

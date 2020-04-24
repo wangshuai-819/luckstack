@@ -81,6 +81,10 @@ namespace _17bangqianduan.Pages.Problem
         {
             return _problemModel.Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
         }
+        public ProblemModel SingleGet(int id)
+        {
+            return _problemModel.SingleOrDefault(p => p.Id == id);
+        }
         public int GetSum()
         {
             return _problemModel.Count ;
